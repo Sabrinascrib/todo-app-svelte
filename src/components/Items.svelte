@@ -14,14 +14,16 @@
     background: rgba(255, 255, 255, 0.8);
   }
 
-  .item.complete {
+  .item.completed {
     background: #dddddd;
   }
 
-  .item.complete .text-input {
+  .item.completed .text-input {
     color: #666666;
     text-decoration: line-through;
   }
+
+
 
   .text-input {
     flex-grow: 1;
@@ -32,7 +34,7 @@
     font-size: 1em;
   }
 
-  .complete-checkbox {
+  .completed-checkbox {
     margin-left: 15px;
   }
 </style>
@@ -40,4 +42,4 @@
 <div class="item">
 <input class="text-input" type="text" bind:value={text} readonly={completed}>
 <input class="completed-checkbox" type="checkbox" bind:checked={completed}>
-</div>
+</div> 
