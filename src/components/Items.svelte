@@ -1,5 +1,14 @@
 <script>
+// @ts-nocheck
+
+    import { createEventDispatcher } from "svelte";
+
     export let id, text, completed;
+
+     const dispatch = createEventDispatcher();
+     function triggerUpdate() {
+      dispatch("update", {id, text, completed})
+     }
 </script>
 
 <style>
@@ -30,16 +39,27 @@
     background: none;
     border: none;
     outline: none;
-    font-weight: 500;
+    font-weight: 500;  
     font-size: 1em;
   }
 
   .completed-checkbox {
     margin-left: 15px;
+    
   }
 </style>
 
 <div class="item" class:completed>
-<input class="text-input" type="text" bind:value={text} readonly={completed}>
-<input class="completed-checkbox" type="checkbox" bind:checked={completed}>
+  <input
+    class="text-input"
+    type="text"
+    bind:value={text}
+    readonly={completed}
+    on:keyup={({ key, target }) => key === 'Enter' && target.blur()}
+    on:blur={() => triggerUpdate()} />
+  <input
+    class="completed-checkbox"
+    type="checkbox"
+    bind:checked={completed}
+    on:change={() => triggerUpdate()} />
 </div> 
